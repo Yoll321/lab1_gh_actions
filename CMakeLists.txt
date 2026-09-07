@@ -22,3 +22,23 @@ set_target_properties(hello-world PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
+
+include(GNUInstallDirs)
+
+install(TARGETS hello-world
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+set(CPACK_PACKAGE_NAME "hello-world")
+set(CPACK_PACKAGE_VENDOR "hello-world project")
+set(CPACK_PACKAGE_CONTACT "nom4@tpu.ru")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Hello World C++ application")
+
+if(APPLE)
+    set(CPACK_GENERATOR "DragNDrop")
+elseif(UNIX)
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "maintainer@example.com")
+endif()
+
+include(CPack)
