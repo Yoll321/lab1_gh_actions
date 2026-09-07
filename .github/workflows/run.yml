@@ -6,19 +6,19 @@ on:
 jobs:
     run:
         runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Configure CMake
-        run: |
-          cmake -S . -B build \
-            -DPATCH_VERSION=${{ github.run_number }} \
-            -DCMAKE_BUILD_TYPE=Release
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
 
-      - name: Build application
-        run: cmake --build build --target hello-world
+          - name: Configure CMake
+            run: |
+              cmake -S . -B build \
+                -DPATCH_VERSION=${{ github.run_number }} \
+                -DCMAKE_BUILD_TYPE=Release
 
-      - name: Run application
-        run: ./build/hello-world
+          - name: Build application
+            run: cmake --build build --target hello-world
+
+          - name: Run application
+            run: ./build/hello-world
