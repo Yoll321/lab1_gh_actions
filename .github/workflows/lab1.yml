@@ -66,3 +66,11 @@ jobs:
           files: |
             artifacts/hello-world-Linux/*.deb
             artifacts/hello-world-macOS/*.dmg
+
+  run:
+    name: Run C++ Application
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: ./build/hello-world
