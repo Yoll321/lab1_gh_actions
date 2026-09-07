@@ -79,7 +79,7 @@ jobs:
         run: >
           cmake -S . -B ./build
           -DPATCH_VERSION=${{ github.run_number }}
-          -DCMAKE_BUILD_TYPE = Release
+          -DCMAKE_BUILD_TYPE=Release
 
       - name: Build Application
         run: cmake --build build --target hello-world
