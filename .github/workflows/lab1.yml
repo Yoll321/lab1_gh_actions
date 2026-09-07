@@ -69,8 +69,20 @@ jobs:
 
   run:
     name: Run C++ Application
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - run: ./build/hello-world
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Configure CMake
+        run: >
+          cmake -S . -B ./build
+          -DPATCH_VERSION=${{ github.run_number }}
+          -DCMAKE_BUILD_TYPE = Release
+
+      - name: Build Application
+        run: cmake --build build --target hello-world
+
+      - name: Run Application
+        run: ./build/hello-world
